@@ -1,0 +1,208 @@
+<div id="laptop" style="width: 100vw; height: 100vh;">
+  <div *ngIf="openedPopUp" style="position: fixed; left: 0; top: 0; right: 0; bottom: 0; z-index: 99999">
+    <div
+      style="position: absolute; top: 0; right: 0; left: calc((5px + 5vw)*5 + 30px); height: calc(5px + 5vw + 35px); background: #000">
+      <p
+        style="padding-left: 20px;padding-right: 20px; font-style: italic; font-weight: 700;font-size: calc(5px + 3vw); color: #FFFFFF; line-height: calc(5px + 5vw + 35px)">
+        <img (click)="openedPopUp = false; openedHelp = false; openedMenu = false;" src="assets/icons/close.svg"
+             align="RIGHT"
+             style="cursor: pointer; height: calc(5px + 5vw + 35px - 50px); margin-top: 25px;">
+        “{{getWork().title.length > 25 ? 'Работа №' +  (this.activeWork + 1).toString(): getWork().title}}”
+      </p>
+    </div>
+    <div
+      style="position: absolute; overflow: hidden; overflow-y: scroll; left: 0; right: 0; bottom: 0; top: calc(5px + 5vw + 35px); background: #FFF">
+
+      <p style="margin: 30px;">
+        <img [src]="getPictureUrl('center')"
+             align="RIGHT"
+             style="height: calc(100vh - 60px - (5px + 5vw + 35px));margin-left: 15px;">
+        <span style="font-size: 25px;" [innerText]="getWork().descr"></span>
+      </p>
+
+    </div>
+  </div>
+  <div *ngIf="openedMenu" style="position: fixed; left: 0; top: 0; right: 0; bottom: 0; z-index: 99999">
+    <div
+      style="position: absolute; top: 0; right: 0; left: calc((5px + 5vw)*5 + 30px); height: calc(5px + 5vw + 35px); background: #000">
+      <p
+        style="padding-left: 20px;padding-right: 20px; font-style: italic; font-weight: 700;font-size: calc(5px + 3vw); color: #FFFFFF; line-height: calc(5px + 5vw + 35px)">
+        <img (click)="openedPopUp = false; openedHelp = false; openedMenu = false;" src="assets/icons/close.svg"
+             align="RIGHT"
+             style="cursor: pointer; height: calc(5px + 5vw + 35px - 50px); margin-top: 25px;">
+        Меню
+      </p>
+    </div>
+    <div
+      style="position: absolute; overflow: hidden; overflow-y: scroll; left: 0; right: 0; bottom: 0; top: calc(5px + 5vw + 35px); background: #FFF">
+      <div style="margin: 30px;">
+        <h2 (click)="activeSection = 0; activeWork  = 0; activePicture = 0; openedMenu = false;"
+            style="font-size: 45px; font-style: italic; cursor: pointer">Маски</h2>
+        <h2 (click)="activeSection = 1; activeWork  = 0; activePicture = 0; openedMenu = false;"
+            style="font-size: 45px; font-style: italic; cursor: pointer">Будущее</h2>
+        <h2 (click)="activeSection = 2; activeWork  = 0; activePicture = 0; openedMenu = false;"
+            style="font-size: 45px; font-style: italic; cursor: pointer">Авангард</h2>
+        <h2 (click)="activeSection = 3; activeWork  = 0; activePicture = 0; openedMenu = false;"
+            style="font-size: 45px; font-style: italic; cursor: pointer">Книги</h2>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="openedHelp" style="position: fixed; left: 0; top: 0; right: 0; bottom: 0; z-index: 99999">
+    <div
+      style="position: absolute; top: 0; right: 0; left: calc((5px + 5vw)*5 + 30px); height: calc(5px + 5vw + 35px); background: #000">
+      <p
+        style="padding-left: 20px;padding-right: 20px; font-style: italic; font-weight: 700;font-size: calc(5px + 3vw); color: #FFFFFF; line-height: calc(5px + 5vw + 35px)">
+        <img (click)="openedPopUp = false; openedHelp = false; openedMenu = false;" src="assets/icons/close.svg"
+             align="RIGHT"
+             style="cursor: pointer; height: calc(5px + 5vw + 35px - 50px); margin-top: 25px;">
+        Справка
+      </p>
+    </div>
+    <div
+      style="position: absolute; overflow: hidden; overflow-y: scroll; left: 0; right: 0; bottom: 0; top: calc(5px + 5vw + 35px); background: #FFF">
+      <p style="font-size: 20px; margin: 30px; margin-bottom: 20px; text-align: center">
+        Листать работы можно стрелками, а можно нажимая на стрелки
+      </p>
+      <iframe
+        style="margin-bottom: 30px; height: 65vh"
+        src="https://docs.google.com/forms/d/e/1FAIpQLSevukvIBhDTbuILCwOBRUgoiNA6KUeFifv94kcI8fe6T_v5BQ/viewform?embedded=true"
+        width="100%" frameborder="0" marginheight="0" marginwidth="0">Загрузка…
+      </iframe>
+    </div>
+  </div>
+  <div class="info">
+    {{getWork().author}}<br>
+    “{{getWork().title}}”
+  </div>
+  <div (touchstart)="swipe($event, 'start')" (touchend)="swipe($event, 'end')">
+    <span class="title">Full Tilt</span>
+    <section style="width: 31vw;">
+      <div class="picture left"
+           (click)="previousWork()"
+           [ngStyle]="{'background': 'url(' + getPictureUrl('left') + ') center/cover no-repeat, #F0ECF0'}">
+        <div class="overlay">
+          <img style="bottom: 20px; right: 15px; height: calc(1.5vw + 3px);" src="assets/icons/previous.svg">
+        </div>
+      </div>
+    </section>
+    <section style="width: 47vw;">
+      <div class="picture top"
+           (click)="previousPicture()"
+           [ngStyle]="{'background': 'url(' + getPictureUrl('top') + ') center/cover no-repeat, #F0ECF0'}"></div>
+      <div (click)="openedPopUp = true" class="picture center"
+           [ngStyle]="{'background': 'url(' + getPictureUrl('center') + ') center/cover no-repeat, #F0ECF0'}"></div>
+      <div class="picture bottom"
+           (click)="nextPicture()"
+           [ngStyle]="{'background': 'url(' + getPictureUrl('bottom') + ') center/cover no-repeat, #F0ECF0'}"></div>
+    </section>
+    <section style="width: 22vw;">
+      <div class="picture right"
+           (click)="nextWork()"
+           [ngStyle]="{'background': 'url(' + getPictureUrl('right') + ') center/cover no-repeat, #F0ECF0'}">
+        <div class="overlay">
+          <img style="bottom: 20px; left: 15px; height: calc(1.5vw + 3px);" src="assets/icons/next.svg">
+        </div>
+      </div>
+    </section>
+  </div>
+  <img (click)="openedHelp = true;" src="assets/icons/help.svg"
+       style="position: fixed; bottom: 15px; right: 30px; width: 40px; cursor: pointer">
+  <img (click)="openedMenu = true;" src="assets/icons/menu.svg"
+       style="position: fixed; bottom: 15px; left: 30px; width: 40px; cursor: pointer">
+</div>
+<div id="mobile" style="width: 100vw; height: 100vh;">
+  <div style="bottom: 0;left: 0; right: 0;height: 60px; position: fixed; z-index: 9999999">
+    <div *ngIf="!openedPopUp && !openedHelp && !openedMenu"
+         (click)="openedHelp = true"
+         style="display: inline-block; width: 80px; height: 60px; vertical-align: top;background: black;">
+      <img src="assets/icons/help_mob.svg" style="width: 50px; margin-left: 15px; margin-top: 5px;">
+    </div>
+    <div *ngIf="openedPopUp || openedHelp || openedMenu"
+         (click)="openedPopUp = false; openedMenu = false; openedHelp = false;"
+         style="display: inline-block; width: 80px; height: 60px; vertical-align: top;background: black;">
+      <img src="assets/icons/close_mob.svg"
+           style="width: 50px; margin-left: 15px; margin-top: 5px;">
+    </div>
+    <div *ngIf="!openedPopUp && !openedHelp && !openedMenu"
+         (click)="openedPopUp = true"
+         style="display: inline-block; width: calc(100% - 160px); background: white; height: 60px; text-decoration: underline;  text-align: center; font-size: calc(4vw + 7px); line-height: 60px; vertical-align: top">
+      Описание
+    </div>
+    <div *ngIf="!openedPopUp && !openedHelp && !openedMenu"
+         (click)="openedMenu = true"
+         style="display: inline-block; width: 80px; height: 60px; vertical-align: top; background: black;">
+      <img src="assets/icons/menu_mob.svg" style="width: 50px; margin-left: 15px; margin-top: 5px;">
+    </div>
+  </div>
+  <div *ngIf="openedPopUp" style="position: fixed; left: 0; top: 0; right: 0; bottom: 0; z-index: 999999">
+    <div
+      style="position: absolute; overflow: hidden; overflow-y: scroll; left: 0; right: 0; bottom: 0; top: calc(5px + 5vw + 45px); background: #FFF">
+      <p style="font-size: 20px; margin: 30px; padding-bottom: 100px;">
+        темпера; переплетный картон, микрогофрокартон, аэрозольная краска, акрил
+        2022
+
+        Я искала вдохновение для проекта в простых ассоциациях с тем, что мне близко. Дом - это место, которое дает
+        полное
+        ощущение безопасности, надежности, спокойствия, гармонии…Я люблю то место, где живу, людей, язык, культуру,
+        природу. Это всё нашло отражение в моей работе. Кокошник - первая ассоциация, которая появилась со словом
+        “Родина”, его форма лежит в основе композиции…to be continued
+      </p>
+
+    </div>
+  </div>
+  <div *ngIf="openedMenu" style="position: fixed; left: 0; top: 0; right: 0; bottom: 0; z-index: 999999">
+    <div
+      style="position: absolute; overflow: hidden; overflow-y: scroll; left: 0; right: 0; bottom: 0; top: calc(5px + 5vw + 45px); background: #FFF">
+      <div style="margin: 30px;">
+        <h2 (click)="activeSection = 0; activeWork  = 0; activePicture = 0; openedMenu = false;"
+            style="font-size: 30px; font-style: italic;">Маски</h2>
+        <h2 (click)="activeSection = 1; activeWork  = 0; activePicture = 0; openedMenu = false;"
+            style="font-size: 30px; font-style: italic;">Будущее</h2>
+        <h2 (click)="activeSection = 2; activeWork  = 0; activePicture = 0; openedMenu = false;"
+            style="font-size: 30px; font-style: italic;">Авангард</h2>
+        <h2 (click)="activeSection = 3; activeWork  = 0; activePicture = 0; openedMenu = false;"
+            style="font-size: 30px; font-style: italic;">Книги</h2>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="openedHelp" style="position: fixed; left: 0; top: 0; right: 0; bottom: 0; z-index: 999999">
+    <div
+      style="position: absolute; overflow: hidden; overflow-y: scroll; left: 0; right: 0; bottom: 0; top: calc(5px + 5vw + 45px); background: #FFF">
+      <p style="font-size: 20px; margin: 30px;margin-bottom: 20px; text-align: center">
+        Чтобы листать работы, свайпайте
+      </p>
+      <iframe
+        style="margin-bottom: 30px;"
+        src="https://docs.google.com/forms/d/e/1FAIpQLSevukvIBhDTbuILCwOBRUgoiNA6KUeFifv94kcI8fe6T_v5BQ/viewform?embedded=true"
+        width="100%" height="605" frameborder="0" marginheight="0" marginwidth="0">Загрузка…
+      </iframe>
+    </div>
+  </div>
+  <div class="info">
+    {{getWork().author}}<br>
+    “{{getWork().title}}”
+  </div>
+  <div (touchstart)="swipe($event, 'start')" (touchend)="swipe($event, 'end')">
+    <span class="title">Full Tilt</span>
+    <div class="picture left"
+         (click)="previousWork()"
+         [ngStyle]="{'background': 'url(' + getPictureUrl('left') + ') center/cover no-repeat, #F0ECF0'}">
+      <div class="overlay">
+      </div>
+    </div>
+    <div class="picture top"
+         (click)="previousPicture()"
+         [ngStyle]="{'background': 'url(' + getPictureUrl('top') + ') center/cover no-repeat, #F0ECF0'}"></div>
+    <div class="picture center"
+         [ngStyle]="{'background': 'url(' + getPictureUrl('center') + ') center/cover no-repeat, #F0ECF0'}"></div>
+    <div class="picture bottom"
+         (click)="nextPicture()"
+         [ngStyle]="{'background': 'url(' + getPictureUrl('bottom') + ') center/cover no-repeat, #F0ECF0'}"></div>
+    <div class="picture right"
+         (click)="nextWork()"
+         [ngStyle]="{'background': 'url(' + getPictureUrl('right') + ') center/cover no-repeat, #F0ECF0'}">
+      <div class="overlay">
+      </div>
+    </div>
+  </div>
+</div>

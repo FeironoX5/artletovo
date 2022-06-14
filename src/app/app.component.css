@@ -1,0 +1,191 @@
+#laptop .title {
+  position: fixed;
+  left: 30px;
+  top: 25px;
+  font-family: 'Shoebox', sans-serif;
+  font-size: calc(5px + 5vw);
+  line-height: calc(5px + 5vw);
+}
+
+#mobile .title {
+  position: fixed;
+  top: 30px;
+  text-align: center;
+  left: 0;
+  right: 0;
+  font-family: 'Shoebox', sans-serif;
+  font-size: calc(15px + 7vw);
+  line-height: calc(5px + 5vw);
+  mix-blend-mode: difference;
+  color: #FFFFFF;
+  z-index: 9999;
+}
+
+#laptop .info {
+  position: fixed;
+  right: 30px;
+  top: 25px;
+  text-align: right;
+  font-size: calc((3px + 3vw) / 2);
+  line-height: calc((3px + 5vw) / 2 - 5px);
+  width: 18vw;
+}
+
+#mobile .info {
+  position: fixed;
+  right: 0;
+  left: 0;
+  bottom: 70px;
+  font-size: calc((8px + 6vw) / 2);
+  line-height: calc((8px + 9vw) / 2 - 5px);
+  text-align: center;
+}
+
+#laptop section {
+  display: inline-block;
+  position: relative;
+  vertical-align: top;
+  overflow: hidden;
+  height: 100vh;
+}
+
+#laptop .picture {
+  overflow: hidden;
+  outline: 1px solid rgba(0, 0, 0, 0.07);
+  transition: transform 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+#laptop .picture.center:hover {
+  transform: scale(1.02);
+}
+
+#mobile .picture {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+#laptop .picture.center {
+  width: calc(47vw - 6vw);
+  height: calc(47vw - 6vw);
+  position: absolute;
+  top: calc((100vh - (47vw - 6vw)) / 2);
+  left: 3vw;
+}
+
+#mobile .picture.center {
+  width: 84vw;
+  position: fixed;
+  top: calc(5px + 5vw + 60px);
+  bottom: calc((8px + 9vw) + 120px);
+  left: 8vw;
+  z-index: 9999;
+}
+
+#laptop .picture.top {
+  width: calc(47vw - 16vw);
+  height: calc(47vw - 16vw);
+  position: absolute;
+  top: calc((100vh - (47vw - 6vw)) / 2 - 33vw);
+  left: 8vw;
+}
+
+#mobile .picture.top {
+  width: 60vw;
+  position: fixed;
+  bottom: calc(70vh + 30px);
+  height: calc(50vh - ((8px + 9vw) + 70px));
+  left: 20vw;
+}
+
+#laptop .picture.bottom {
+  width: calc(47vw - 16vw);
+  height: calc(47vw - 16vw);
+  position: absolute;
+  bottom: calc((100vh - (47vw - 6vw)) / 2 - 33vw);
+  left: 8vw;
+}
+
+#mobile .picture.bottom {
+  width: 60vw;
+  position: fixed;
+  top: 50vh;
+  bottom: calc((8px + 9vw) + 70px);
+  left: 20vw;
+}
+
+#laptop .picture.left {
+  width: 32vw;
+  height: 32vw;
+  position: absolute;
+  right: 0;
+  top: calc((100vh - 32vw) / 2 + 20px);
+}
+
+#mobile .picture.left {
+  width: 32vw;
+  position: fixed;
+  top: calc(50vh - ((100vh - 128px - 9vw) - 65px - 5vw) / 2 + 30px);
+  left: -16vw;
+  height: calc(((100vh - 128px - 9vw) - 65px - 5vw) / 2 + 20px);
+}
+
+#laptop .picture.right {
+  width: 32vw;
+  height: 32vw;
+  position: absolute;
+  left: 0;
+  top: calc((100vh - 32vw) / 2 + 20px);
+}
+
+#mobile .picture.right {
+  width: 32vw;
+  position: fixed;
+  top: calc(50vh - ((100vh - 128px - 9vw) - 65px - 5vw) / 2 + 30px);
+  right: -16vw;
+  height: calc(((100vh - 128px - 9vw) - 65px - 5vw) / 2 + 20px);
+}
+
+#laptop .overlay {
+  height: 100%;
+  width: 100%;
+  background: #F0ECF0;
+  opacity: 1;
+  position: relative;
+}
+
+#mobile .overlay {
+  height: 100%;
+  width: 100%;
+  background: #F0ECF0;
+  opacity: 1;
+  position: relative;
+}
+
+#laptop .overlay:hover {
+  opacity: 0;
+}
+
+#mobile .overlay:hover {
+  opacity: 0;
+}
+
+#laptop .overlay img {
+  opacity: 0.7;
+  position: absolute;
+}
+
+
+#mobile {
+  display: none;
+}
+
+@media (max-width: 600px) {
+  #laptop {
+    display: none;
+  }
+
+  #mobile {
+    display: unset;
+  }
+}
+
