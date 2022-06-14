@@ -7,7 +7,7 @@
         <img (click)="openedPopUp = false; openedHelp = false; openedMenu = false;" src="assets/icons/close.svg"
              align="RIGHT"
              style="cursor: pointer; height: calc(5px + 5vw + 35px - 50px); margin-top: 25px;">
-        “{{getWork().title.length > 25 ? 'Работа №' +  (this.activeWork + 1).toString(): getWork().title}}”
+        “{{getWork().title.length > 25 ? 'Работа №' + (this.activeWork + 1).toString() : getWork().title}}”
       </p>
     </div>
     <div
@@ -137,15 +137,7 @@
   <div *ngIf="openedPopUp" style="position: fixed; left: 0; top: 0; right: 0; bottom: 0; z-index: 999999">
     <div
       style="position: absolute; overflow: hidden; overflow-y: scroll; left: 0; right: 0; bottom: 0; top: calc(5px + 5vw + 45px); background: #FFF">
-      <p style="font-size: 20px; margin: 30px; padding-bottom: 100px;">
-        темпера; переплетный картон, микрогофрокартон, аэрозольная краска, акрил
-        2022
-
-        Я искала вдохновение для проекта в простых ассоциациях с тем, что мне близко. Дом - это место, которое дает
-        полное
-        ощущение безопасности, надежности, спокойствия, гармонии…Я люблю то место, где живу, людей, язык, культуру,
-        природу. Это всё нашло отражение в моей работе. Кокошник - первая ассоциация, которая появилась со словом
-        “Родина”, его форма лежит в основе композиции…to be continued
+      <p style="font-size: 20px; margin: 30px; padding-bottom: 100px;" [innerText]="getWork().descr">
       </p>
 
     </div>
