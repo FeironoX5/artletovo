@@ -13,11 +13,22 @@
     <div
       style="position: absolute; overflow: hidden; overflow-y: scroll; left: 0; right: 0; bottom: 0; top: calc(5px + 5vw + 35px); background: #FFF">
 
-      <p style="margin: 30px;">
-        <img [src]="getPictureUrl('center')"
+      <p style="margin: 30px 30px 45px;position: relative">
+        <img class="cpimg" [src]="getPictureUrl('center')"
              align="RIGHT"
-             style="height: calc(100vh - 60px - (5px + 5vw + 35px));margin-left: 15px;">
-        <span style="font-size: 25px;" [innerText]="getWork().descr"></span>
+             style="right: 30px; position: fixed;">
+        <img [src]="getPictureUrl('center')"
+             class="cpimg"
+             align="RIGHT"
+             style="opacity: 0;">
+        <span
+          (click)="previousPicture()"
+          style="cursor: pointer; position: fixed; text-align: center;width: 60px; right: 30px; line-height: 30px; background: black; color: white; font-size: 15px;">Вперед</span>
+        <span
+          (click)="nextPicture()"
+          style="cursor: pointer; position: fixed; text-align: center;width: 60px; right: 90px; line-height: 30px; background: black; color: white; font-size: 15px;">Назад</span>
+        <span style="font-size: 25px; margin-bottom: 10px;" [innerText]="getWork().descr"></span>
+        <span style="font-size: 18px; font-style: italic; width: 400px" [innerText]="getWork().mat"></span>
       </p>
 
     </div>
@@ -86,14 +97,15 @@
       </div>
     </section>
     <section style="width: 47vw;">
-      <div class="picture top"
-           (click)="previousPicture()"
-           [ngStyle]="{'background': 'url(' + getPictureUrl('top') + ') center/cover no-repeat, #F0ECF0'}"></div>
+      <!--      <div class="picture top"-->
+      <!--           (click)="previousPicture()"-->
+      <!--           [ngStyle]="{'background': 'url(' + getPictureUrl('top') + ') center/cover no-repeat, #F0ECF0'}"></div>-->
       <div (click)="openedPopUp = true" class="picture center"
            [ngStyle]="{'background': 'url(' + getPictureUrl('center') + ') center/cover no-repeat, #F0ECF0'}"></div>
-      <div class="picture bottom"
-           (click)="nextPicture()"
-           [ngStyle]="{'background': 'url(' + getPictureUrl('bottom') + ') center/cover no-repeat, #F0ECF0'}"></div>
+      <!--      <div ></div>-->
+      <!--      <div class="picture bottom"-->
+      <!--           (click)="nextPicture()"-->
+      <!--           [ngStyle]="{'background': 'url(' + getPictureUrl('bottom') + ') center/cover no-repeat, #F0ECF0'}"></div>-->
     </section>
     <section style="width: 22vw;">
       <div class="picture right"
@@ -137,9 +149,9 @@
   <div *ngIf="openedPopUp" style="position: fixed; left: 0; top: 0; right: 0; bottom: 0; z-index: 999999">
     <div
       style="position: absolute; overflow: hidden; overflow-y: scroll; left: 0; right: 0; bottom: 0; top: calc(5px + 5vw + 45px); background: #FFF">
-      <p style="font-size: 20px; margin: 30px; padding-bottom: 100px;" [innerText]="getWork().descr">
-      </p>
-
+      <p style="font-size: 20px; margin: 30px; padding-bottom: 10px;" [innerText]="getWork().descr">
+      <p style="font-size: 15px; margin: 30px; padding-bottom: 160px; font-style: italic"
+         [innerText]="getWork().mat"></p>
     </div>
   </div>
   <div *ngIf="openedMenu" style="position: fixed; left: 0; top: 0; right: 0; bottom: 0; z-index: 999999">
